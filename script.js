@@ -79,6 +79,9 @@ function deleteDigit () {
   numArr.pop()
   num = numArr.join('');
   result.textContent = resultArr.join('');
+  if(resultArr.length < 1) {
+    result.textContent = '0'
+  }
 }
 
 function clearAll () {
