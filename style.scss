@@ -5,4 +5,64 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  main {
+    display: grid;
+    grid-gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 2.5rem;
+    margin-top: 4vw;
+    background-color: black;
+    width: 19vw;
+    height: 32vw;
+    border-radius: 1vw;
+    grid-template-areas: 
+
+    'h h h h'
+    'one two three four'
+    'five six seven eight'
+    'nine ten eleven tvelwe'
+    'thirteen fourteen fifteen sixteen'
+    'seventeen seventeen eightteen nineteen'
+    ;
+
+    header {
+      grid-area: h;
+      margin-right: 8px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+    div {
+      cursor: pointer;
+      background-color: rgb(88, 88, 88);
+      border-radius: 99px;
+      font-size: 28px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      
+    
+    }
+    div:hover {
+      opacity: 0.8;
+    }
+
+    .lightgray {
+      background-color: rgb(148, 146, 146);
+      color: black;
+      font-weight: 400;
+    }
+    .orange {
+      background-color: rgb(197, 130, 6);
+    }
+  
+  }
+ 
+  
+  
 }
