@@ -81,7 +81,7 @@ function pushResult() {
   arr.push(Number(num))
   const res = operate(arr[0],operation,arr[1])
 
-  if(res === Infinity) {
+  if(res === Infinity) { // If user try to Divide a number with zero 
     result.textContent = 'Math Error'
     setTimeout(() => {
       result.textContent = '0'
