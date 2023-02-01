@@ -15,11 +15,16 @@ let num = ''
 let operation;
 
 function operate(num1, operation, num2) {
-  if(operation === '+') return num1 + num2
-  if(operation === 'x') return num1 * num2
-  if(operation === '-') return num1 - num2
-  if(operation === '÷') return num1 / num2
-  if(operation === '%') return num1 % num2
+  let result = 0
+  if(operation === '+') result = (num1 + num2)
+  if(operation === 'x') result = (num1 * num2)
+  if(operation === '-') result = (num1 - num2)
+  if(operation === '÷') result = (num1 / num2)
+  if(operation === '%') result = (num1 % num2)
+  if(result.toString().length > 5) {
+    return result.toFixed(2)
+  }
+  return result
 }
 
 
@@ -65,10 +70,18 @@ function pushResult() {
   arr.push(Number(num))
   console.log(num);
   console.log(arr);
-  result.textContent = `${operate(arr[0],operation,arr[1])}`
+  const res = operate(arr[0],operation,arr[1])
+  if(res === Infinity) {
+    result.textContent = 'Math Error'
+    setTimeout(() => {
+      result.textContent = '0'
+    }, 1000);
+  } else {
+    result.textContent = res
+  }
   arr = []
   operation = ''
-  num = result.textContent
+  if(result.textContent !== 'Math Error') num = result.textContent
   console.log(num);
 }
 
@@ -80,7 +93,7 @@ function deleteDigit () {
   num = numArr.join('');
   result.textContent = resultArr.join('');
   if(resultArr.length < 1) {
-    result.textContent = '0'
+    clearAll()
   }
 }
 
