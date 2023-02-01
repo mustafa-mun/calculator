@@ -1,3 +1,5 @@
+// Read the code and understand it again, look for possible refactors.
+
 const result = document.getElementById('result') // Result elements
 const operations = document.getElementById('operations')
 
@@ -14,28 +16,24 @@ let arr = []
 let num = ''
 let operation;
 
-function operate(num1, operation, num2) {
-  let result = 0
-  if(operation === '+') result = (num1 + num2)
-  if(operation === 'x') result = (num1 * num2)
-  if(operation === '-') result = (num1 - num2)
-  if(operation === '÷') result = (num1 / num2)
-  if(operation === '%') result = (num1 % num2)
-  if(result.toString().length > 5) {
-    return result.toFixed(2)
-  }
-  return result
-}
-
 
 numberButtons.forEach(item => {
 
   item.addEventListener('click', function(e) {
 
     if(result.textContent === '0' ) result.textContent = ''
-    result.textContent += e.target.innerText
-    num += e.target.innerText
-    console.log(num);
+
+    if(e.target.innerText === '.') { // Don't allow user to put multiple dots to number
+      if(!result.textContent.includes('.')) {
+        result.textContent += e.target.innerText
+        num += e.target.innerText
+      } 
+    } else {
+      result.textContent += e.target.innerText
+      num += e.target.innerText
+
+    }
+    
   })
 
 })
@@ -49,7 +47,7 @@ operationButtons.forEach(item => {
     arr.push(Number(num))
     num = ''
     result.textContent +=  ` ${e.target.innerText } `
-    console.log(arr);
+
   })
 })
 
@@ -66,11 +64,23 @@ acButton.addEventListener('click', () => {
 })
 
 
+function operate(num1, operation, num2) {
+  let result = 0
+  if(operation === '+') result = (num1 + num2)
+  if(operation === 'x') result = (num1 * num2)
+  if(operation === '-') result = (num1 - num2)
+  if(operation === '÷') result = (num1 / num2)
+  if(operation === '%') result = (num1 % num2)
+  if(result.toString().length > 5) {
+    return result.toFixed(2)
+  }
+  return result
+}
+
 function pushResult() {
   arr.push(Number(num))
-  console.log(num);
-  console.log(arr);
   const res = operate(arr[0],operation,arr[1])
+
   if(res === Infinity) {
     result.textContent = 'Math Error'
     setTimeout(() => {
