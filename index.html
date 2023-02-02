@@ -14,8 +14,8 @@
     <header>
       <span id="result" style="font-size: 60px;">0</span>
     </header>
-    <div id="ac" class="lightgray">AC</div>
-    <div id="clear" class="lightgray">C</div>
+    <div id="ac" class="lightgray" onclick="clearAll()">AC</div>
+    <div id="clear" class="lightgray" onclick="deleteDigit()">C</div>
     <div id="module" class="lightgray operation">%</div>
     <div id="divide" class="orange operation">÷</div>
     <div class="number" id="seven">7</div>
@@ -32,7 +32,7 @@
     <div id="multiply" class="orange operation">x</div>
     <div class="number" id="zero" style="grid-area: seventeen;">0</div>
     <div class="number">.</div>
-    <div id="equals" class="orange">=</div>
+    <div id="equals" class="orange" onclick="pushResult()">=</div>
   </main>
   
 

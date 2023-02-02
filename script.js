@@ -1,23 +1,16 @@
-// Read the code and understand it again, look for possible refactors.
-
 const result = document.getElementById('result') // Result elements
 const operations = document.getElementById('operations')
 
 const numberButtons = document.querySelectorAll('.number') // Number elements
 const operationButtons = document.querySelectorAll('.operation')
 
-const clearButton = document.getElementById('clear');
-const acButton = document.getElementById('ac');
-const equalsButton = document.getElementById('equals');
 
-
-
-let arr = []
+let arr = [] // For storing nums
 let num = ''
 let operation;
 
 
-numberButtons.forEach(item => {
+numberButtons.forEach(item => { // Displaying digits on the screen and storing the numbers
 
   item.addEventListener('click', function(e) {
 
@@ -51,37 +44,25 @@ operationButtons.forEach(item => {
   })
 })
 
-equalsButton.addEventListener('click', () => {
-  pushResult()
-})
 
-clearButton.addEventListener('click', () => {
-  deleteDigit()
-})
-
-acButton.addEventListener('click', () => {
-  clearAll()
-})
-
-
-function operate(num1, operation, num2) {
+function operate(num1, operation, num2) { // Calculation function
   let result = 0
-  if(operation === '+') result = (num1 + num2)
-  if(operation === 'x') result = (num1 * num2)
-  if(operation === '-') result = (num1 - num2)
-  if(operation === '÷') result = (num1 / num2)
-  if(operation === '%') result = (num1 % num2)
+  if(operation === '+') result = num1 + num2
+  if(operation === 'x') result = num1 * num2
+  if(operation === '-') result = num1 - num2
+  if(operation === '÷') result = num1 / num2
+  if(operation === '%') result = num1 % num2
   if(result.toString().length > 5) {
     return result.toFixed(2)
   }
   return result
 }
 
-function pushResult() {
+function pushResult() { // Equals button function
   arr.push(Number(num))
   const res = operate(arr[0],operation,arr[1])
 
-  if(res === Infinity) { // If user try to Divide a number with zero 
+  if(res === 'Infinity') { // If user try to Divide a number with zero 
     result.textContent = 'Math Error'
     setTimeout(() => {
       result.textContent = '0'
@@ -92,10 +73,9 @@ function pushResult() {
   arr = []
   operation = ''
   if(result.textContent !== 'Math Error') num = result.textContent
-  console.log(num);
 }
 
-function deleteDigit () {
+function deleteDigit () { // C button function
   const resultArr = result.textContent.split('')
   const numArr = num.split('')
   resultArr.pop()
@@ -103,11 +83,11 @@ function deleteDigit () {
   num = numArr.join('');
   result.textContent = resultArr.join('');
   if(resultArr.length < 1) {
-    clearAll()
+    clearAll() // Preventing blank result 
   }
 }
 
-function clearAll () {
+function clearAll () { // AC button function
   arr = []
   operation = ''
   num = '';
