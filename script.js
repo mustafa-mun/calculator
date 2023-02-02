@@ -40,7 +40,6 @@ operationButtons.forEach(item => {
     arr.push(Number(num))
     num = ''
     result.textContent +=  ` ${e.target.innerText } `
-
   })
 })
 
